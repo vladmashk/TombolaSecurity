@@ -44,7 +44,7 @@ def noDuplicatesTest(keyList, previousKeyList = []):
 
 
 
-# Returns the security keys as list from the TombolaKeys.txt file
+# Returns the security keys as list from the TombolaKeys.txt file in current directory
 def readList():
     file = open("TombolaKeys.txt", "r")
     keyList = []
