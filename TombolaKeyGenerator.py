@@ -1,10 +1,14 @@
 import random
 
-# ticketAmount is amount of tickets
-# secNbLength is length of security number ! Recommended length is 6 or higher !
-# previousKeyListLength is length of the list of the previously generated keys if available
-#
-# Creates the file TombolaKeys.txt in source folder
+"""
+Create the file TombolaKeys.txt in source folder
+
+ticketAmount: amount of tickets
+secNbLength: length of security number ! Recommended length is 6 or higher !
+previousKeyListLength: length of the list of the previously generated keys if available
+
+output: creates file TombolaKeys.txt in source folder
+"""
 def generateTicketList(ticketAmount, secNbLength, previousKeyListLength = 0):
 
     file = open("TombolaKeys.txt", "w+")
@@ -31,20 +35,21 @@ def generateTicketList(ticketAmount, secNbLength, previousKeyListLength = 0):
     return keyList
 
 
-
-# Check that no duplicates exist in keyList + previousKeyList
+"""
+Return amount of duplicates in keyList + previousKeyList (can be left blank)
+"""
 def noDuplicatesTest(keyList, previousKeyList = []):
     mergedList = list(keyList) + list(previousKeyList)
     keySet = set(mergedList)
     if len(mergedList) == len(keySet):
-        print("No duplicate(s) found")
+        return 0
     else:
-        print("Duplicate(s) found")
-        print("Amount of Duplicates:", len(mergedList) - len(keySet))
+        return len(mergedList) - len(keySet)
 
 
-
-# Returns the security keys as list from the TombolaKeys.txt file in current directory
+"""
+Return the security keys as a list from the TombolaKeys.txt file in source folder
+"""
 def readList():
     file = open("TombolaKeys.txt", "r")
     keyList = []
@@ -54,15 +59,12 @@ def readList():
 
     return keyList
 
-# =======================================================================
 
-myKeyList = generateTicketList(10000, 6)
-noDuplicatesTest(myKeyList)
+# Example
+
+#myKeyList = generateTicketList(100, 6)
+#print(noDuplicatesTest(myKeyList), "duplicate(s) found")
 
 # previousKeys = readList()
-# myKeyList2 = generateTicketList(5000, 6, len(previousKeys))
-# noDuplicatesTest(myKeyList, myKeyList2)
-
-
-print("")
-input("Press any key to exit")
+# myKeyList2 = generateTicketList(400, 6, len(previousKeys))
+# print(noDuplicatesTest(myKeyList, myKeyList2), "duplicate(s) found")
